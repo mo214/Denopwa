@@ -17,7 +17,7 @@ const contentTypes: Record<string, string> = {
 
 serve((req) => {
   const url = new URL(req.url);
-  let filePath = url.pathname === "/" ? "/index.html" : url.pathname;
+  const filePath = url.pathname === "/" ? "/index.html" : url.pathname;
   const ext = extname(filePath);
   const contentType = contentTypes[ext] || "application/octet-stream";
   const fullPath = join(PUBLIC_DIR, filePath);
