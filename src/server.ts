@@ -1,24 +1,33 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+import { extname, join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 console.log("HTTP server is running on http://localhost:8000");
 
+const PUBLIC_DIR = "../public";
+
+const contentTypes: Record<string, string> = {
+  ".html": "text/html",
+  ".webmanifest": "application/manifest+json",
+  ".js": "application/javascript",
+  ".png": "image/png",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon",
+  ".json": "application/json",
+};
+
 serve((req) => {
   const url = new URL(req.url);
+  let filePath = url.pathname === "/" ? "/index.html" : url.pathname;
+  const ext = extname(filePath);
+  const contentType = contentTypes[ext] || "application/octet-stream";
+  const fullPath = join(PUBLIC_DIR, filePath);
 
-  if (url.pathname === "/") {
-    return new Response(Deno.readTextFileSync("./src/index.html"), {
-      headers: { "content-type": "text/html" },
+  try {
+    const file = Deno.readFileSync(fullPath);
+    return new Response(file, {
+      headers: { "content-type": contentType },
     });
+  } catch {
+    return new Response("Not found", { status: 404 });
   }
-  if (url.pathname === "/manifest.webmanifest") {
-    return new Response(Deno.readTextFileSync("./src/manifest.webmanifest"), {
-      headers: { "content-type": "application/manifest+json" },
-    });
-  }
-  if (url.pathname === "/sw.js") {
-    return new Response(Deno.readTextFileSync("./src/sw.js"), {
-      headers: { "content-type": "application/javascript" },
-    });
-  }
-  return new Response("Not found", { status: 404 });
 }, { port: 8000 });
