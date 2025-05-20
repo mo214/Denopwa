@@ -1,4 +1,3 @@
-import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { extname, join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 console.log("HTTP server is running on http://localhost:8000");
@@ -15,7 +14,7 @@ const contentTypes: Record<string, string> = {
   ".json": "application/json",
 };
 
-serve((req) => {
+Deno.serve({ port: 8000 }, (req) => {
   const url = new URL(req.url);
   const filePath = url.pathname === "/" ? "/index.html" : url.pathname;
   const ext = extname(filePath);
@@ -30,4 +29,4 @@ serve((req) => {
   } catch {
     return new Response("Not found", { status: 404 });
   }
-}, { port: 8000 });
+});
