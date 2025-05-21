@@ -20,7 +20,7 @@ Deno.serve({ port: 8000 }, (req) => {
   const ext = extname(filePath);
   const contentType = contentTypes[ext] || "application/octet-stream";
   const fullPath = join(PUBLIC_DIR, filePath);
-
+ console.log("Requested:", filePath, "Resolved:", fullPath);
   try {
     const file = Deno.readFileSync(fullPath);
     return new Response(file, {
