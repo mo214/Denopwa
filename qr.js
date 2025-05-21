@@ -6,8 +6,10 @@ function onScanSuccess(decodedText, _decodedResult) {
 }
 
 globalThis.addEventListener('DOMContentLoaded', () => {
-  const qrCodeScanner = new Html5QrcodeScanner(
-    "qr-reader", { fps: 10, qrbox: 250 }
+  const html5QrCode = new Html5Qrcode("qr-reader");
+  html5QrCode.start(
+    { facingMode: "environment" }, // Use back camera
+    { fps: 10, qrbox: 250 },
+    onScanSuccess
   );
-  qrCodeScanner.render(onScanSuccess);
 });
