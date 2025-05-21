@@ -2,7 +2,7 @@ import { extname, join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 console.log("HTTP server is running on http://localhost:8000");
 
-const PUBLIC_DIR = "../public";
+const PUBLIC_DIR = ".."; // Now serving from project root
 
 const contentTypes: Record<string, string> = {
   ".html": "text/html",
