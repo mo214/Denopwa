@@ -2,9 +2,13 @@
 // <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
 function onScanSuccess(decodedText, _decodedResult) {
-  document.getElementById('qr-result').innerText = "QR Code: " + decodedText;
-  // Automatically navigate to the scanned URL
-  globalThis.location.href = decodedText;
+  // If the QR code content is exactly "menu", redirect to menu.html
+  if (decodedText === "menu") {
+    globalThis.location.href = "menu.html";
+  } else {
+    // Otherwise, redirect to result.html with the scanned URL as a query parameter
+    globalThis.location.href = `result.html?url=${encodeURIComponent(decodedText)}`;
+  }
 }
 
 globalThis.addEventListener('DOMContentLoaded', () => {
