@@ -3,6 +3,8 @@
 
 function onScanSuccess(decodedText, _decodedResult) {
   document.getElementById('qr-result').innerText = "QR Code: " + decodedText;
+  // Automatically navigate to the scanned URL
+  globalThis.location.href = decodedText;
 }
 
 globalThis.addEventListener('DOMContentLoaded', () => {
