@@ -4,7 +4,7 @@
 function onScanSuccess(decodedText, _decodedResult) {
   // If the QR code content is exactly "menu", redirect to menu.html
   if (decodedText === "menu") {
-    globalThis.location.href = "menu.html";
+    globalThis.location.href = "./menu.html";
   } else {
     // Otherwise, redirect to result.html with the scanned URL as a query parameter
     globalThis.location.href = `result.html?url=${encodeURIComponent(decodedText)}`;
