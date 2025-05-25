@@ -1,4 +1,4 @@
-function openSidebar() {
+function _openSidebar() {
   document.getElementById('sidebar').style.width = '250px';
 }
 
