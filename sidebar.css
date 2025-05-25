@@ -1,4 +1,4 @@
-.sidebar {
+#sidebar {
   height: 100%;
   width: 0;
   position: fixed;
@@ -11,7 +11,7 @@
   padding-top: 60px;
 }
 
-.sidebar a {
+#sidebar a {
   padding: 8px 32px 8px 8px; /* Adjust padding for right sidebar */
   text-decoration: none;
   font-size: 25px;
@@ -19,7 +19,7 @@
   display: block;
 }
 
-.sidebar a[onclick] {
+#sidebar a[onclick] {
   position: absolute;
   top: 10px;
   left: 25px;        /* Change from right: 25px; to left: 25px; */
