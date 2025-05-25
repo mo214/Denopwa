@@ -3,6 +3,7 @@
 
 function onScanSuccess(decodedText, _decodedResult) {
   // If the QR code content is exactly "menu", redirect to menu.html
+  console.log("Scanned QR content:", decodedText); // Add this line
   if (decodedText === "menu") {
     globalThis.location.href = "./menu.html";
   } else {
