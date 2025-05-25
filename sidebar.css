@@ -4,7 +4,7 @@
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
+  right: 0;           /* Change from left: 0; to right: 0; */
   background-color: #111;
   overflow-x: hidden;
   transition: 0.3s;
@@ -12,7 +12,7 @@
 }
 
 .sidebar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 32px 8px 8px; /* Adjust padding for right sidebar */
   text-decoration: none;
   font-size: 25px;
   color: white;
@@ -22,13 +22,13 @@
 .sidebar a[onclick] {
   position: absolute;
   top: 10px;
-  right: 25px;
+  left: 25px;        /* Change from right: 25px; to left: 25px; */
   font-size: 36px;
 }
 
 #openSidebarBtn {
   position: fixed;
   top: 10px;
-  left: 10px;
+  right: 10px;       /* Change from left: 10px; to right: 10px; */
   z-index: 2;
 }
