@@ -35,7 +35,7 @@
   left: 0;
   width: 100%;
   color: #fff;
-  
+  background: none;
   font-size: 1.2em;
   font-weight: 600;
   padding: 10px 0;
@@ -43,6 +43,7 @@
   margin: 0;
   z-index: 2;
   pointer-events: none;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .item-overlay {
