@@ -1,13 +1,14 @@
 .menu-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   margin: 20px 0;
+  padding: 0 10px;
 }
 
 .menu-item {
   position: relative;
-  width: 225px;
+  width: 100%;
   margin: 0;
   padding: 0;
   background: none;
@@ -17,6 +18,9 @@
   cursor: pointer;
   text-align: center;
   transition: none;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .menu-item img {
@@ -26,7 +30,8 @@
   margin: 0;
   background: none;
   object-fit: cover;
-  max-width: 225px;
+  max-width: 100%;
+  aspect-ratio: 1/1;
 }
 
 .item-name {
