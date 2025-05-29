@@ -4,34 +4,47 @@
   gap: 16px;
   margin: 20px 0;
 }
+
 .menu-item {
   position: relative;
-  background: #222;
-  border-radius: 10px;
-  padding: 12px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.15s;
+  width: 225px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  transition: none;
 }
+
 .menu-item img {
   width: 100%;
-  max-width: 225px;
-  height: auto;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  background: #fff;
+  display: block;
+  border-radius: 0;
+  margin: 0;
+  background: none;
   object-fit: cover;
+  max-width: 225px;
 }
+
 .item-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   color: #fff;
-  margin-top: 6px;
-  font-size: 1.1em;
-  font-weight: 500;
-  cursor: pointer;
+  background: rgba(0,0,0,0.45);
+  font-size: 1.2em;
+  font-weight: 600;
+  padding: 10px 0;
+  text-align: center;
+  margin: 0;
   z-index: 2;
-  position: relative;
+  pointer-events: none;
 }
+
 .item-overlay {
   display: none;
   position: absolute;
@@ -45,9 +58,11 @@
   padding: 20px;
   text-align: center;
 }
+
 .menu-item.show-overlay .item-overlay {
   display: flex;
 }
+
 .close-btn {
   position: absolute;
   top: 10px; right: 16px;
