@@ -35,7 +35,7 @@
   left: 0;
   width: 100%;
   color: #fff;
-  background: rgba(0,0,0,0.45);
+  
   font-size: 1.2em;
   font-weight: 600;
   padding: 10px 0;
@@ -49,7 +49,7 @@
   display: none;
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(30,30,30,0.95);
+ 
   color: #fff;
   justify-content: center;
   align-items: center;
