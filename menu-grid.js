@@ -1,6 +1,6 @@
 
 function toggleOverlay(elem) {
-  const menuItem = elem.closest('menu-item');
+  const menuItem = elem.closest('.menu-item');
   if (menuItem) {
     menuItem.classList.toggle('show-overlay');
   }
