@@ -1,7 +1,7 @@
 
 function toggleOverlay(elem) {
   const menuItem = elem.closest('.menu-item');
-  if (menuITem) {
+  if (menuItem) {
     menuItem.classList.toggle('show-overlay');
   }
   else {
@@ -10,7 +10,7 @@ function toggleOverlay(elem) {
 }
 globalThis.addEventListener('DOMContentLoaded', () => {
  const  triggerElements = document.querySelectorAll('.js-toggle-overlay-trigger');
- triggerElements.foreach(triggerElements => {
+ triggerElements.forEach(triggerElements => {
   triggerElements.addEventListener('click', () => {toggleOverlay(this);
   });
  });
