@@ -12,11 +12,11 @@ globalThis.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.menu-item').forEach(el => {
     el.addEventListener('click', () => {
       e.stopPropagation(); // Prevent click from bubbling up to the document
-      item.classList.toggle('show-overlay');
+      el.item.classList.toggle('show-overlay');
     });
   });
 
-  document.querryselectorAll('.close-btn').forEach(btn => {
+  document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       e.stopPropagation(); // Prevent click from bubbling up to the document
       const item = e.currentTarget.closest('.menu-item');
