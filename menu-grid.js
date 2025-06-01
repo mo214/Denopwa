@@ -12,7 +12,7 @@ globalThis.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.menu-item').forEach(el => {
     el.addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent click from bubbling up to the document
-      el.item.classList.toggle('show-overlay');
+      el.classList.toggle('show-overlay');
     });
   });
 
