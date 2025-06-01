@@ -8,7 +8,7 @@ function toggleOverlay(elem) {
     console.error('Element not found or does not have the expected class.');
   }
 }
-globalThis.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.menu-item').forEach(el => {
     el.addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent click from bubbling up to the document
