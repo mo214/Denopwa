@@ -10,14 +10,14 @@ function toggleOverlay(elem) {
 }
 globalThis.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.menu-item').forEach(el => {
-    el.addEventListener('click', (event) => {
+    el.addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent click from bubbling up to the document
       el.item.classList.toggle('show-overlay');
     });
   });
 
   document.querySelectorAll('.close-btn').forEach(btn => {
-    btn.addEventListener('click', (event) => {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent click from bubbling up to the document
       const item = e.currentTarget.closest('.menu-item');
       item.classList.remove('show-overlay');
