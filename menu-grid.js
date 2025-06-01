@@ -9,9 +9,11 @@ function toggleOverlay(elem) {
   }
 }
 globalThis.addEventListener('DOMContentLoaded', () => {
- const  triggerElements = document.querySelectorAll('.js-toggle-overlay-trigger');
- triggerElements.forEach(triggerElements => {
-  triggerElements.addEventListener('click', function() {
+  const triggerElements = document.querySelectorAll('.js-toggle-overlay-trigger');
+  // Corrected: Changed the parameter name in forEach to avoid shadowing
+  triggerElements.forEach(triggerElement => {
+    // 'this' inside this function will correctly refer to the clicked triggerElement
+    triggerElement.addEventListener('click', function() {
     toggleOverlay(this);
   });
  });

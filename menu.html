@@ -56,9 +56,10 @@
 
 <h3>Cakes &amp; Pastries</h3>
 <div class="menu-grid">
-  <div class="menu-item" onclick="toggleOverlay(this)">
+  <div class="menu-item">
     <img src="images/Cheesecake.jpg" alt="Cheesecake">
-    <div class="item-name js-toggle-overlay-trigger" onclick="toggleOverlay(this)">Cheesecake</div>
+    <!-- The 'js-toggle-overlay-trigger' class will be handled by menu-grid.js -->
+    <div class="item-name js-toggle-overlay-trigger">Cheesecake</div>
     <div class="item-overlay">
       <span class="close-btn" onclick="event.stopPropagation(); toggleOverlay(this.closest('.menu-item'));">×</span>
       <span class="overlay-text">A delicious cheesecake with a creamy filling and a crunchy base.</span>
