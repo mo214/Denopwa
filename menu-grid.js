@@ -1,6 +1,6 @@
 
 function toggleOverlay(elem) {
-  const menuItem = elem.closest('menu-item');
+  const menuItem = elem.closest('.menu-item');
   if (menuItem) {
     menuItem.classList.toggle('show-overlay');
   }
@@ -11,7 +11,8 @@ function toggleOverlay(elem) {
 globalThis.addEventListener('DOMContentLoaded', () => {
  const  triggerElements = document.querySelectorAll('.js-toggle-overlay-trigger');
  triggerElements.forEach(triggerElements => {
-  triggerElements.addEventListener('click', () => {toggleOverlay(this);
+  triggerElements.addEventListener('click', function() {
+    toggleOverlay(this);
   });
  });
   });
