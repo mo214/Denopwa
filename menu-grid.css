@@ -48,7 +48,7 @@
   padding: 10px 0 10px 18px; /* Add left padding here */
   text-align: left;          /* Align text to the left */
   margin: 0;
-  z-index: 2;
+  z-index: 3;
   
   text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }

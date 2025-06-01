@@ -9,13 +9,19 @@ function toggleOverlay(elem) {
   }
 }
 globalThis.addEventListener('DOMContentLoaded', () => {
-  const triggerElements = document.querySelectorAll('.js-toggle-overlay-trigger');
-  // Corrected: Changed the parameter name in forEach to avoid shadowing
-  triggerElements.forEach(triggerElement => {
-    // 'this' inside this function will correctly refer to the clicked triggerElement
-    triggerElement.addEventListener('click', function() {
-    toggleOverlay(this);
+  document.querySelectorAll('.menu-item').forEach(el => {
+    el.addEventListener('click', () => {
+      e.stopPropagation(); // Prevent click from bubbling up to the document
+      item.classList.toggle('show-overlay');
+    });
   });
- });
+
+  document.querryselectorAll('.close-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      e.stopPropagation(); // Prevent click from bubbling up to the document
+      const item = e.currentTarget.closest('.menu-item');
+      item.classList.remove('show-overlay');
+    });
+  });
   });
  
