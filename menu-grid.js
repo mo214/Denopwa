@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.js-toggle-overlay-trigger').forEach(trigger => {
     const handleActivation = (e) => {
       e.preventDefault();
-      e.stopPropagation();
+     
       const menuItem = trigger.closest('.menu-item');
       if (menuItem) {
         menuItem.classList.toggle('show-overlay');
