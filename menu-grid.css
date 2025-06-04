@@ -51,6 +51,8 @@
   z-index: 3;
   text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   -webkit-tap-highlight-color: transparent;
+  display: block;
+  text-decoration: none;
 }
 
 
