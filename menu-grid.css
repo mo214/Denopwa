@@ -104,7 +104,7 @@
   color: #000000;
   cursor: pointer;
   z-index: 4; /* Ensure it's clickable and above item-name if overlapping */
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
   border-radius: 50%;
   
   -webkit-tap-highlight-color: transparent;
