@@ -21,7 +21,7 @@
 
 <h3>Hot Drinks</h3>
 <div class="menu-grid">
-  <div class="menu-item">
+  <div class="menu-item" data-price="3.50">
     <img src="images/8624835-how-to-make-a-cappuccino-beauty-4x3-0301-13d55eaad60b42058f24369c292d4ccb.jpg" alt="Cappuccino">
     <div class="item-name">Cappuccino</div>
     <span class="add-to-cart-icon">🛒</span>
@@ -58,7 +58,7 @@
 
 <h3>Cakes &amp; Pastries</h3>
 <div class="menu-grid">
-<div class="menu-item">
+<div class="menu-item" data-price="4.75">
   <a href="cheesecake.html" class="menu-item-link">
     <img src="images/Cheesecake.jpg" alt="Cheesecake" loading="lazy">
   </a>
@@ -128,12 +128,11 @@
     <span>Home</span>
   </button>
   <button class="bottom-bar-item">
-    <!-- Optional: <i class="icon-menu"></i> -->
     <span>Menu</span>
   </button>
-  <button class="bottom-bar-item">
+  <button class="bottom-bar-item" id="cart-action-button">
     <!-- Optional: <i class="icon-cart"></i> -->
-    <span>Cart</span>
+    <span id="cart-summary-text">Cart</span>
   </button>
   <button class="bottom-bar-item">
     <!-- Optional: <i class="icon-profile"></i> -->
@@ -146,5 +145,6 @@
 
   <script src="sidebar.js"></script>
   <script src="menu-grid.js"></script>
+  <script src="cart.js"></script>
 </body>
 </html>
