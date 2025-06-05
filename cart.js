@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update the cart summary text
     function updateCartSummary() {
         if (cartSummaryTextElement) {
-            cartSummaryTextElement.textContent = `Cart ($${currentTotalPrice.toFixed(2)})`;
+            cartSummaryTextElement.textContent = `DKK (${currentTotalPrice.toFixed(2)},-)`;
         }
     }
 
