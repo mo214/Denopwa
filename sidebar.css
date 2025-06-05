@@ -2,7 +2,7 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 4;
+  z-index: 11;
   top: 0;
   right: 0;           /* Change from left: 0; to right: 0; */
   background-color: #111;
