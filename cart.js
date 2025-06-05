@@ -2,17 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart-icon');
     const cartSummaryTextElement = document.getElementById('cart-summary-text');
     let currentTotalPrice = 0.0;
+    let cartItemCount = 0; // Initialize item counter
 
     // Function to update the cart summary text
     function updateCartSummary() {
         if (cartSummaryTextElement) {
-            cartSummaryTextElement.textContent = `DKK (${currentTotalPrice.toFixed(2)},-)`;
+            // Update text to include cart icon, item count, and total price
+            cartSummaryTextElement.textContent = `🛒 ${cartItemCount} DKK (${currentTotalPrice.toFixed(2)},-)`;
         }
     }
 
     // Initialize cart summary text
     updateCartSummary();
-
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             // Prevent any default action or event bubbling if necessary
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const price = parseFloat(menuItem.dataset.price);
                 if (!isNaN(price)) {
                     currentTotalPrice += price;
+                    cartItemCount++; // Increment the item count
                     updateCartSummary();
                 } else {
                     console.warn('Item price is not a valid number:', menuItem.dataset.price);
