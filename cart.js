@@ -17,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Add click event listener to the cart action button
+    const cartActionButton = document.getElementById('cart-action-button');
+    if (cartActionButton) {
+        cartActionButton.addEventListener('click', () => {
+            // This is where you can add logic to show cart details later
+            alert('Cart button clicked!'); 
+        });
+    }
+
     // Initialize cart summary text
     updateCartSummary();
     addToCartButtons.forEach(button => {
