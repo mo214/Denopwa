@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart-icon');
-    const cartSummaryTextElement = document.getElementById('cart-summary-text');
+    // const cartIconDisplayElement = document.getElementById('cart-icon-display'); // If you need to manipulate the icon later
+    const cartDetailsDisplayElement = document.getElementById('cart-details-display');
     let currentTotalPrice = 0.0;
     let cartItemCount = 0; // Initialize item counter
 
     // Function to update the cart summary text
     function updateCartSummary() {
-        if (cartSummaryTextElement) {
-            // Update text to include cart icon, item count, and total price
-            cartSummaryTextElement.textContent = `🛒 ${cartItemCount} DKK (${currentTotalPrice.toFixed(2)},-)`;
+        // The icon is now static in HTML, so we only update the details span
+        if (cartDetailsDisplayElement) {
+            // Update text to include item count and total price
+            cartDetailsDisplayElement.textContent = `${cartItemCount} DKK (${currentTotalPrice.toFixed(2)},-)`;
         }
     }
 
