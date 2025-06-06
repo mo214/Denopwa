@@ -122,6 +122,18 @@
   <button id="openSidebarBtn" onclick="openSidebar()">☰ Menu</button>
   <!-- (Your other page content) -->
 
+<div id="cart-items-panel">
+  <div class="cart-panel-header">
+    <h4>Your Cart</h4>
+    <button id="close-cart-panel-btn" aria-label="Close cart panel">&times;</button>
+  </div>
+  <div id="cart-items-list">
+    <!-- Cart items will be dynamically added here -->
+  </div>
+  <div id="cart-total-summary">
+    Total: <span id="cart-panel-total-price-currency">DKK</span> <span id="cart-panel-total-price">0.00</span>
+  </div>
+</div>
 <div id="bottom-bar">
   <button class="bottom-bar-item">
     <!-- Optional: <i class="icon-home"></i> -->
