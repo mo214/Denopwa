@@ -38,6 +38,11 @@
   background-color: #34495e; /* Slightly darker on hover */
 }
 
+/* Move the cart button to the right */
+#cart-action-button {
+  order: 1; /* Any value greater than the default 0 for other items */
+}
+
 /*
 Example for icons (e.g., using Font Awesome or SVGs):
 .bottom-bar-item i {
