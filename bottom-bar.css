@@ -43,6 +43,11 @@
   order: 1; /* Any value greater than the default 0 for other items */
 }
 
+/* Ensure the price details text is explicitly centered */
+#cart-details-display {
+  width: 100%; /* Allow the span to take available width */
+  text-align: center; /* Center the text within the span */
+}
 /*
 Example for icons (e.g., using Font Awesome or SVGs):
 .bottom-bar-item i {
