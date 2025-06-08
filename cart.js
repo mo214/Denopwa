@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartActionButton = document.getElementById('cart-action-button');
     if (cartActionButton) {
         cartActionButton.addEventListener('click', () => {
-            // This is where you can add logic to show cart details later
-            alert('Cart button clicked!'); 
+            alert(`You have ${cartItemCount} item(s) in your cart.`);
         });
     }
 
