@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add click event listener to the cart action button
-    const cartActionButton = document.getElementById('cart-action-button');
-    if (cartActionButton) {
-        cartActionButton.addEventListener('click', () => {
-            alert(`Total price: DKK ${currentTotalPrice.toFixed(2)},-`);
-        });
-    }
+   // const cartActionButton = document.getElementById('cart-action-button');
+    //if (cartActionButton) {
+      //  cartActionButton.addEventListener('click', () => {
+        //    alert(`Total price: DKK ${currentTotalPrice.toFixed(2)},-`);
+        //});
+    //}
 
     // Initialize cart summary text
     updateCartSummary();
