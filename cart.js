@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartActionButton = document.getElementById('cart-action-button');
     if (cartActionButton) {
         cartActionButton.addEventListener('click', () => {
-            alert(`You have ${cartItemCount} item(s) in your cart.`);
+            alert(`Total price: DKK ${currentTotalPrice.toFixed(2)},-`);
         });
     }
 
