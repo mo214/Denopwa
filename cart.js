@@ -16,6 +16,14 @@ function updateCartSummary() {
     }
 }
 
+// Function to clear the cart
+function clearCart() {
+    cartItems = [];
+    currentTotalPrice = 0.0;
+    updateCartSummary();
+    // If the cart overlay is open, it might be good to refresh or hide it too
+    // For now, just clearing data and updating summary.
+}
 document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart-icon');
     cartIconDisplayElement = document.getElementById('cart-icon-display'); // Assign to top-level variable
@@ -33,6 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Add click event listener to the "Bestill" (Order) button
+    const orderButton = document.getElementById('order-button');
+    if (orderButton) {
+        orderButton.addEventListener('click', () => {
+            if (cartItems.length === 0) {
+                alert("Your cart is empty. Add some items before placing an order.");
+                return;
+            }
+            if (globalThis.OrderConfirmationOverlayModule && typeof globalThis.OrderConfirmationOverlayModule.show === 'function') {
+                globalThis.OrderConfirmationOverlayModule.show(cartItems, currentTotalPrice);
+                clearCart(); // Clear the cart after showing the confirmation
+            } else {
+                console.error("OrderConfirmationOverlayModule is not loaded or 'show' function is missing.");
+            }
+        });
+    }
     // Initialize cart summary text now that DOM elements are assigned
     updateCartSummary();
     addToCartButtons.forEach(button => {
@@ -104,4 +128,4 @@ function updateCartItemQuantity(itemKey, newQuantity) {
 globalThis.CartModule = {
     updateItemQuantity: updateCartItemQuantity
 };
-//version 1.0.3
+//version 1.0.4
