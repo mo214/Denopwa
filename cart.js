@@ -149,4 +149,4 @@ function updateCartItemQuantity(itemKey, newQuantity) {
 globalThis.CartModule = {
     updateItemQuantity: updateCartItemQuantity
 };
-//version 1.0.6
+//version 1.0.7
