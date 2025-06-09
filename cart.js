@@ -1,22 +1,25 @@
+// Variables and functions that need to be accessed across different parts of the script
+let currentTotalPrice = 0.0;
+let cartItems = []; // Array to store item objects {name, price}
+let cartIconDisplayElement = null;
+let cartDetailsDisplayElement = null;
+
+// Function to update the cart summary text - now at the top level
+function updateCartSummary() {
+    if (cartIconDisplayElement) {
+        // Update text to include item count and cart icon
+        cartIconDisplayElement.textContent = `${cartItems.length} 🛒`;
+    }
+    if (cartDetailsDisplayElement) {
+        // Update text to include total price
+        cartDetailsDisplayElement.textContent = `DKK (${currentTotalPrice.toFixed(2)},-)`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart-icon');
-    const cartIconDisplayElement = document.getElementById('cart-icon-display'); 
-    const cartDetailsDisplayElement = document.getElementById('cart-details-display');
-    let currentTotalPrice = 0.0;
-    let cartItems = []; // Array to store item objects {name, price}
-    // cartItemCount can be derived from cartItems.length
-
-    // Function to update the cart summary text
-    function updateCartSummary() {
-        if (cartIconDisplayElement) {
-            // Update text to include item count and cart icon
-            cartIconDisplayElement.textContent = `${cartItems.length} 🛒`;
-        }
-        if (cartDetailsDisplayElement) {
-            // Update text to include total price
-            cartDetailsDisplayElement.textContent = `DKK (${currentTotalPrice.toFixed(2)},-)`;
-        }
-    }
+    cartIconDisplayElement = document.getElementById('cart-icon-display'); // Assign to top-level variable
+    cartDetailsDisplayElement = document.getElementById('cart-details-display'); // Assign to top-level variable
 
     // Add click event listener to the cart action button
     const cartActionButton = document.getElementById('cart-action-button');
@@ -30,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initialize cart summary text
+    // Initialize cart summary text now that DOM elements are assigned
     updateCartSummary();
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (event) => {
@@ -59,10 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// In cart.js
-
-// ... (your existing cart.js code) ...
-
 function updateCartItemQuantity(itemKey, newQuantity) {
     const [name, priceString] = itemKey.split('_');
     const price = parseFloat(priceString);
@@ -73,10 +72,10 @@ function updateCartItemQuantity(itemKey, newQuantity) {
     }
 
     // Create a new cartItems array based on the new quantity
-    const newCartItems = [];
+    let newAggregatedCartItems = []; // Renaming to avoid confusion with top-level cartItems
     let newTotalPrice = 0;
 
-    // Add back other items
+    // Filter out the item being updated, keep others
     cartItems.forEach(item => {
         if (item.name !== name || item.price !== price) {
             newCartItems.push(item);
@@ -86,11 +85,11 @@ function updateCartItemQuantity(itemKey, newQuantity) {
 
     // Add the updated item with its new quantity
     for (let i = 0; i < newQuantity; i++) {
-        newCartItems.push({ name: name, price: price });
+        newAggregatedCartItems.push({ name: name, price: price });
         newTotalPrice += price;
     }
 
-    cartItems = newCartItems; // Update the main cartItems array
+    cartItems = newAggregatedCartItems; // Update the main cartItems array
     currentTotalPrice = newTotalPrice; // Update the main total price
 
     updateCartSummary(); // Update the summary display (e.g., DKK total in the header)
@@ -105,6 +104,3 @@ function updateCartItemQuantity(itemKey, newQuantity) {
 globalThis.CartModule = {
     updateItemQuantity: updateCartItemQuantity
 };
-
-// Ensure updateCartSummary() is called initially as well
-// document.addEventListener('DOMContentLoaded', () => { ... updateCartSummary(); ... });
