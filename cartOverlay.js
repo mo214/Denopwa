@@ -108,19 +108,90 @@
                 });
 
                 aggregatedItems.forEach(aggregatedItem => {
+                    const itemKey = `${aggregatedItem.name}_${aggregatedItem.price}`; // Re-construct itemKey for handlers
                     const itemElement = document.createElement('p');
+                    itemElement.style.margin = '8px 0'; // Adjust spacing for each item line
+                    itemElement.style.display = 'flex'; // For aligning items in the line
+                    itemElement.style.alignItems = 'center'; // Vertically align items in the line
+
                     const itemName = aggregatedItem.name || 'Unnamed Item';
                     const itemPrice = typeof aggregatedItem.price === 'number' ? aggregatedItem.price.toFixed(2) : 'N/A';
                     const itemCount = aggregatedItem.count;
 
-                    let itemText = `${itemName}: DKK ${itemPrice}`;
-                    if (itemCount > 1) {
-                        itemText = `${itemName} (x${itemCount}): DKK ${itemPrice}`;
-                    }
-                    itemElement.textContent = itemText;
-                    itemElement.style.margin = '4px 0'; // Adjust spacing for each item
-                    itemElement.style.color = '#333'; // Darker text for items
+                    // Item Info Span (Name and Price)
+                    const itemInfoSpan = document.createElement('span');
+                    itemInfoSpan.textContent = `${itemName}: DKK ${itemPrice}`;
+                    itemInfoSpan.style.color = '#333';
+                    itemInfoSpan.style.flexGrow = '1'; // Allow it to take available space
+
+                    // Quantity Display Span
+                    const quantityDisplaySpan = document.createElement('span');
+                    quantityDisplaySpan.textContent = ` (x${itemCount})`;
+                    quantityDisplaySpan.style.color = '#555';
+                    quantityDisplaySpan.style.cursor = 'pointer';
+                    quantityDisplaySpan.style.marginLeft = '10px';
+                    quantityDisplaySpan.style.fontWeight = 'bold';
+                    quantityDisplaySpan.title = 'Click to change quantity';
+
+                    // Quantity Editor Span (hidden by default)
+                    const quantityEditorSpan = document.createElement('span');
+                    quantityEditorSpan.style.display = 'none';
+                    quantityEditorSpan.style.marginLeft = '10px';
+
+                    const quantityInput = document.createElement('input');
+                    quantityInput.type = 'number';
+                    quantityInput.value = itemCount;
+                    quantityInput.min = '0'; // 0 could mean remove from cart
+                    quantityInput.style.width = '40px';
+                    quantityInput.style.marginRight = '5px';
+
+                    const updateBtn = document.createElement('button');
+                    updateBtn.textContent = 'Update';
+                    updateBtn.style.marginRight = '5px';
+
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.textContent = 'Cancel';
+
+                    quantityEditorSpan.appendChild(quantityInput);
+                    quantityEditorSpan.appendChild(updateBtn);
+                    quantityEditorSpan.appendChild(cancelBtn);
+
+                    itemElement.appendChild(itemInfoSpan);
+                    itemElement.appendChild(quantityDisplaySpan);
+                    itemElement.appendChild(quantityEditorSpan);
                     overlayItemsContainer.appendChild(itemElement);
+
+                    // Event Listeners for quantity editing
+                    quantityDisplaySpan.addEventListener('click', () => {
+                        quantityDisplaySpan.style.display = 'none';
+                        quantityInput.value = aggregatedItem.count; // Reset to current count
+                        quantityEditorSpan.style.display = 'inline';
+                        quantityInput.focus();
+                    });
+
+                    updateBtn.addEventListener('click', () => {
+                        const newQuantity = parseInt(quantityInput.value, 10);
+                        if (!isNaN(newQuantity) && newQuantity >= 0) {
+                            if (globalThis.CartModule && typeof globalThis.CartModule.updateItemQuantity === 'function') {
+                                globalThis.CartModule.updateItemQuantity(itemKey, newQuantity);
+                                // The cart.js module should then call showCartOverlay again, which will rebuild this.
+                            } else {
+                                console.warn('CartModule.updateItemQuantity is not defined. UI updated locally, but cart state is not synced.');
+                                // Fallback: update display locally and hide editor (no actual cart update)
+                                quantityDisplaySpan.textContent = ` (x${newQuantity})`;
+                                aggregatedItem.count = newQuantity; // Temporary local update for display
+                                quantityEditorSpan.style.display = 'none';
+                                quantityDisplaySpan.style.display = 'inline';
+                            }
+                        } else {
+                            quantityInput.value = aggregatedItem.count; // Revert to original on invalid input
+                        }
+                    });
+
+                    cancelBtn.addEventListener('click', () => {
+                        quantityEditorSpan.style.display = 'none';
+                        quantityDisplaySpan.style.display = 'inline';
+                    });
                 });
             } else {
                 const noItemsMsg = document.createElement('p');

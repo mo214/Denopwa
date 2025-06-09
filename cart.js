@@ -58,3 +58,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// In cart.js
+
+// ... (your existing cart.js code) ...
+
+function updateCartItemQuantity(itemKey, newQuantity) {
+    const [name, priceString] = itemKey.split('_');
+    const price = parseFloat(priceString);
+
+    if (isNaN(price) || !name) {
+        console.error('Invalid itemKey for quantity update:', itemKey);
+        return;
+    }
+
+    // Create a new cartItems array based on the new quantity
+    const newCartItems = [];
+    let newTotalPrice = 0;
+
+    // Add back other items
+    cartItems.forEach(item => {
+        if (item.name !== name || item.price !== price) {
+            newCartItems.push(item);
+            newTotalPrice += item.price;
+        }
+    });
+
+    // Add the updated item with its new quantity
+    for (let i = 0; i < newQuantity; i++) {
+        newCartItems.push({ name: name, price: price });
+        newTotalPrice += price;
+    }
+
+    cartItems = newCartItems; // Update the main cartItems array
+    currentTotalPrice = newTotalPrice; // Update the main total price
+
+    updateCartSummary(); // Update the summary display (e.g., DKK total in the header)
+
+    // Refresh the cart overlay with the new state
+    if (globalThis.CartOverlayModule && typeof globalThis.CartOverlayModule.show === 'function') {
+        globalThis.CartOverlayModule.show(cartItems, currentTotalPrice);
+    }
+}
+
+// Expose the function globally
+globalThis.CartModule = {
+    updateItemQuantity: updateCartItemQuantity
+};
+
+// Ensure updateCartSummary() is called initially as well
+// document.addEventListener('DOMContentLoaded', () => { ... updateCartSummary(); ... });
