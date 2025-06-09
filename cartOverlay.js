@@ -3,6 +3,7 @@
     'use strict';
 
     let overlayElement = null;
+    let overlayItemsContainer = null; // To display individual cart items
     let overlayTotalPriceElement = null;
     let closeOverlayButton = null;
 
@@ -37,6 +38,19 @@
         title.style.marginTop = '0';
         title.style.marginBottom = '15px';
 
+        // Container for item details
+        overlayItemsContainer = document.createElement('div');
+        overlayItemsContainer.id = 'overlay-items-list';
+        Object.assign(overlayItemsContainer.style, {
+            marginBottom: '15px',
+            maxHeight: '200px', // Adjust as needed, makes it scrollable if many items
+            overflowY: 'auto',
+            textAlign: 'left', // Align item text to the left
+            borderBottom: '1px solid #eee', // Visual separator
+            paddingBottom: '10px', // Space below items before separator
+            fontSize: '0.9em'
+        });
+
         const priceParagraph = document.createElement('p');
         priceParagraph.textContent = 'Total price: DKK ';
         priceParagraph.style.fontSize = '1.1em';
@@ -56,6 +70,7 @@
         });
 
         overlayContent.appendChild(title);
+        overlayContent.appendChild(overlayItemsContainer); // Add items container before total price
         overlayContent.appendChild(priceParagraph);
         overlayContent.appendChild(closeOverlayButton);
         overlayElement.appendChild(overlayContent);
@@ -70,10 +85,37 @@
         });
     }
 
-    function showCartOverlay(totalPrice) {
+    // Updated to accept an array of items and the total price
+    function showCartOverlay(items, totalPrice) {
         if (!overlayElement) {
             createCartOverlayDOM(); // Ensure it's created
         }
+
+        // Populate item details
+        if (overlayItemsContainer) {
+            overlayItemsContainer.innerHTML = ''; // Clear previous items
+
+            if (items && items.length > 0) {
+                items.forEach(item => {
+                    const itemElement = document.createElement('p');
+                    // Assuming item is an object like { name: 'Product Name', price: 123.45 }
+                    const itemName = item.name || 'Unnamed Item';
+                    const itemPrice = typeof item.price === 'number' ? item.price.toFixed(2) : 'N/A';
+                    itemElement.textContent = `${itemName}: DKK ${itemPrice}`;
+                    itemElement.style.margin = '4px 0'; // Adjust spacing for each item
+                    itemElement.style.color = '#333';
+                    overlayItemsContainer.appendChild(itemElement);
+                });
+            } else {
+                const noItemsMsg = document.createElement('p');
+                noItemsMsg.textContent = 'Your cart is empty.';
+                noItemsMsg.style.margin = '4px 0';
+                noItemsMsg.style.fontStyle = 'italic';
+                noItemsMsg.style.color = '#777';
+                overlayItemsContainer.appendChild(noItemsMsg);
+            }
+        }
+
         if (overlayTotalPriceElement) {
             overlayTotalPriceElement.textContent = totalPrice.toFixed(2);
         }

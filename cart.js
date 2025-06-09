@@ -3,13 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartIconDisplayElement = document.getElementById('cart-icon-display'); 
     const cartDetailsDisplayElement = document.getElementById('cart-details-display');
     let currentTotalPrice = 0.0;
-    let cartItemCount = 0; // Initialize item counter
+    let cartItems = []; // Array to store item objects {name, price}
+    // cartItemCount can be derived from cartItems.length
 
     // Function to update the cart summary text
     function updateCartSummary() {
         if (cartIconDisplayElement) {
             // Update text to include item count and cart icon
-            cartIconDisplayElement.textContent = `${cartItemCount} 🛒`;
+            cartIconDisplayElement.textContent = `${cartItems.length} 🛒`;
         }
         if (cartDetailsDisplayElement) {
             // Update text to include total price
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cartActionButton) {
         cartActionButton.addEventListener('click', () => {
             if (globalThis.CartOverlayModule && typeof globalThis.CartOverlayModule.show === 'function') {
-                globalThis.CartOverlayModule.show(currentTotalPrice);
+                globalThis.CartOverlayModule.show(cartItems, currentTotalPrice);
             } else {
                 console.error("CartOverlayModule is not loaded or 'show' function is missing.");
             }
@@ -37,11 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // event.stopPropagation(); 
 
             const menuItem = button.closest('.menu-item');
-            if (menuItem && menuItem.dataset.price) {
+            // Ensure you have a way to get the item's name, e.g., from a data attribute or a specific element
+            // For example, if your HTML has <div class="menu-item" data-name="Coffee" data-price="25">...</div>
+            const itemName = menuItem.dataset.name || menuItem.querySelector('.item-name')?.textContent || 'Unknown Item';
+
+            if (menuItem && menuItem.dataset.price && itemName) {
                 const price = parseFloat(menuItem.dataset.price);
                 if (!isNaN(price)) {
+                    cartItems.push({ name: itemName, price: price });
                     currentTotalPrice += price;
-                    cartItemCount++; // Increment the item count
+                    // cartItemCount is now cartItems.length
                     updateCartSummary();
                 } else {
                     console.warn('Item price is not a valid number:', menuItem.dataset.price);
