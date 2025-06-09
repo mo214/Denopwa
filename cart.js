@@ -46,36 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (orderButton) {
         orderButton.addEventListener('click', () => {
             orderButton.disabled = true;
-            orderButton.textContent = 'Processing...';
+            orderButton.textContent = 'Bestiller...'; // "Ordering..."
+
             if (cartItems.length === 0) {
                 alert("Your cart is empty. Add some items before placing an order.");
+                orderButton.disabled = false;
+                orderButton.textContent = 'Bestill';
                 return;
             }
-           const tableToSubmit = globalThis.currentTableNumber || 'N/A'; // Get table number, default if not found
 
-            const orderData = {
-                table: tableToSubmit,
-                order: cartItems, // cartItems is your selectedItems
-                totalPrice: currentTotalPrice
-            };
-            fetch("/submit-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(orderData)
-                }).then(response => {
-                    if (!response.ok) {
-                        return response.json().then(errData => {throw new Error(errData.message || 'Server responded with ${response.status}')});
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    conssole.log("Order submitted successfully:", data);
-                    if (globalThis.OrderConfirmationOverlayModule && typeof globalThis.OrderConfirmationOverlayModule.show === 'function') {
-                    globalThis.OrderConfirmationOverlayModule.show(cartItems, currentTotalPrice);
-                    clearCart(); // Clear the cart ONLY after successful submission and showing confirmation
-                }
-            })
+            // Directly show confirmation and clear cart without backend call
+            if (globalThis.OrderConfirmationOverlayModule && typeof globalThis.OrderConfirmationOverlayModule.show === 'function') {
+                globalThis.OrderConfirmationOverlayModule.show(cartItems, currentTotalPrice);
+                clearCart();
+            } else {
+                console.error("OrderConfirmationOverlayModule is not loaded or 'show' function is missing.");
+            }
 
+            // Re-enable button after a short delay to allow overlay to show
+            setTimeout(() => {
+                orderButton.disabled = false;
+                orderButton.textContent = 'Bestill';
+            }, 500); // Adjust delay as needed
         });
     }
     // Initialize cart summary text now that DOM elements are assigned
@@ -149,4 +141,4 @@ function updateCartItemQuantity(itemKey, newQuantity) {
 globalThis.CartModule = {
     updateItemQuantity: updateCartItemQuantity
 };
-//version 1.0.7
+//version 1.0.8
