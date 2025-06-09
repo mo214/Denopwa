@@ -78,7 +78,7 @@ function updateCartItemQuantity(itemKey, newQuantity) {
     // Filter out the item being updated, keep others
     cartItems.forEach(item => {
         if (item.name !== name || item.price !== price) {
-            newCartItems.push(item);
+            newAggregatedCartItems.push(item);
             newTotalPrice += item.price;
         }
     });
@@ -104,3 +104,4 @@ function updateCartItemQuantity(itemKey, newQuantity) {
 globalThis.CartModule = {
     updateItemQuantity: updateCartItemQuantity
 };
+//version 1.0.0
