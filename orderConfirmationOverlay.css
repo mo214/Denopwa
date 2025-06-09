@@ -37,6 +37,13 @@
     color: #333;
 }
 
+.order-confirmation-table-number-p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 #order-confirmation-items-list {
     margin-bottom: 15px;
     max-height: 150px;

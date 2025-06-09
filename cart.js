@@ -56,8 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Directly show confirmation and clear cart without backend call
+            const currentTable = globalThis.currentTableNumber || 'N/A';
             if (globalThis.OrderConfirmationOverlayModule && typeof globalThis.OrderConfirmationOverlayModule.show === 'function') {
-                globalThis.OrderConfirmationOverlayModule.show(cartItems, currentTotalPrice);
+                globalThis.OrderConfirmationOverlayModule.show(cartItems, currentTotalPrice, currentTable);
                 clearCart();
             } else {
                 console.error("OrderConfirmationOverlayModule is not loaded or 'show' function is missing.");
