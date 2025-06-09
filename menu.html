@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#1976d2">
   <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="menu-grid.css">
+  <link rel="stylesheet" href="orderConfirmationOverlay.css"> <!-- Added order confirmation overlay CSS -->
   <link rel="stylesheet" href="bottom-bar.css">
 </head>
 <body>
@@ -146,6 +147,7 @@
   <script src="sidebar.js"></script>
   <script src="menu-grid.js"></script>
   <script src="cartOverlay.js"></script>
+   <script src="orderConfirmationOverlay.js"></script> <!-- Ensure this is loaded before cart.js if cart.js calls it -->
   <script src="cart.js"></script>
 </body>
 </html>

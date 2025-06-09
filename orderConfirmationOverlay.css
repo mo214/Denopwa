@@ -1,0 +1,73 @@
+/* orderConfirmationOverlay.css */
+
+#order-confirmation-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none; /* Initially hidden, JS will toggle to 'flex' */
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    font-family: Arial, sans-serif;
+}
+
+.order-confirmation-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    min-width: 300px;
+    max-width: 90%;
+}
+
+.order-confirmation-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #28a745;
+    font-size: 1.6em;
+}
+
+.order-confirmation-subtitle {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+#order-confirmation-items-list {
+    margin-bottom: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+    text-align: left;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+.order-confirmation-total-price-p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 0;
+    color: #333;
+}
+
+.order-confirmation-close-btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.order-item-line {
+    margin: 4px 0;
+    color: #333;
+}
