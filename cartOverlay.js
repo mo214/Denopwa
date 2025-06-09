@@ -96,14 +96,30 @@
             overlayItemsContainer.innerHTML = ''; // Clear previous items
 
             if (items && items.length > 0) {
+                const aggregatedItems = new Map();
                 items.forEach(item => {
+                    // Create a unique key for each item based on its name and price
+                    const itemKey = `${item.name}_${item.price}`;
+                    if (aggregatedItems.has(itemKey)) {
+                        aggregatedItems.get(itemKey).count++;
+                    } else {
+                        aggregatedItems.set(itemKey, { ...item, count: 1 });
+                    }
+                });
+
+                aggregatedItems.forEach(aggregatedItem => {
                     const itemElement = document.createElement('p');
-                    // Assuming item is an object like { name: 'Product Name', price: 123.45 }
-                    const itemName = item.name || 'Unnamed Item';
-                    const itemPrice = typeof item.price === 'number' ? item.price.toFixed(2) : 'N/A';
-                    itemElement.textContent = `${itemName}: DKK ${itemPrice}`;
+                    const itemName = aggregatedItem.name || 'Unnamed Item';
+                    const itemPrice = typeof aggregatedItem.price === 'number' ? aggregatedItem.price.toFixed(2) : 'N/A';
+                    const itemCount = aggregatedItem.count;
+
+                    let itemText = `${itemName}: DKK ${itemPrice}`;
+                    if (itemCount > 1) {
+                        itemText = `${itemName} (x${itemCount}): DKK ${itemPrice}`;
+                    }
+                    itemElement.textContent = itemText;
                     itemElement.style.margin = '4px 0'; // Adjust spacing for each item
-                    itemElement.style.color = '#333';
+                    itemElement.style.color = '#333'; // Darker text for items
                     overlayItemsContainer.appendChild(itemElement);
                 });
             } else {
