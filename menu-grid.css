@@ -6,6 +6,16 @@
   padding: 0 10px;
 }
 
+
+h2 {
+  text-align: center;
+  color: #333; /* Dark grey color for the text */
+  margin-top: 0; /* Space above is handled by the logo's container margin-bottom */
+  margin-bottom: 25px; /* Space below the heading */
+  font-family: 'Arial', sans-serif; /* Example: Choose a font that fits your brand */
+  /* You can add other properties like font-size, font-weight, etc. here */
+}
+
 .menu-item {
   position: relative;
   width: 100%;
