@@ -3,21 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Menu</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-  <link rel="stylesheet" href="sidebar.css">
+  <title>Cheesecake</title>
   <link rel="stylesheet" href="menu-grid.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="bottom-bar.css">
+  <style>
+    .cheesecake-container {
+      max-width: 400px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 24px 18px 32px 18px;
+      text-align: center;
+    }
+    .cheesecake-img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+    .cheesecake-options {
+      text-align: left;
+      margin: 0 auto 20px auto;
+      max-width: 320px;
+    }
+    .cheesecake-options label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.05em;
+      cursor: pointer;
+    }
+    .add-to-cart-btn {
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 28px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 18px;
+      transition: background 0.2s;
+    }
+    .add-to-cart-btn:hover {
+      background: #1256a3;
+    }
+  </style>
 </head>
 <body>
-   <script src="menu-grid.js"></script>
+  <div class="cheesecake-container">
+    <h2>Cheesecake</h2>
+    <img src="images/Cheesecake.jpg" alt="Cheesecake" class="cheesecake-img" />
+    <div class="item-price" style="font-size:1.2em; margin-bottom: 18px;">DKK 19,-</div>
+    <form class="cheesecake-options">
+      <strong>Choose your topping:</strong>
+      <label>
+        <input type="radio" name="topping" value="Strawberry Sauce" checked>
+        Strawberry Sauce
+      </label>
+      <label>
+        <input type="radio" name="topping" value="Blueberry Sauce">
+        Blueberry Sauce
+      </label>
+      <label>
+        <input type="radio" name="topping" value="Chocolate Drizzle">
+        Chocolate Drizzle
+      </label>
+      <label>
+        <input type="radio" name="topping" value="No Topping">
+        No Topping
+      </label>
+      <strong style="display:block; margin-top:18px;">Add-ons:</strong>
+      <label>
+        <input type="checkbox" name="addon" value="Whipped Cream">
+        Whipped Cream (+DKK 3,-)
+      </label>
+      <label>
+        <input type="checkbox" name="addon" value="Fresh Berries">
+        Fresh Berries (+DKK 5,-)
+      </label>
+    </form>
+    <button class="add-to-cart-btn">Add to Cart 🛒</button>
+  </div>
+  <div style="text-align:center; margin-top:30px;">
+    <a href="menu.html" style="color:#1976d2; text-decoration:underline;">&#8592; Back to Menu</a>
+  </div>
+  <script src="menu-grid.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
   </script>
-  <h2>Cheesecake</h2>
-  <body>
-    
-  </body>
-  </html>
+</body>
+</html>
