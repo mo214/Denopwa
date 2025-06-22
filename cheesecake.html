@@ -91,7 +91,25 @@
   <div style="text-align:center; margin-top:30px;">
     <a href="menu.html" style="color:#1976d2; text-decoration:underline;">&#8592; Back to Menu</a>
   </div>
+
+  <div id="bottom-bar">
+    <button class="bottom-bar-item">
+      <!-- Optional: <i class="icon-home"></i> -->
+    </button>
+    <button id="order-button" style="padding: 10px 20px; background-color: #fafafa; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Bestill</button>
+    <span id="cart-details-display">DKK (0.00,-)</span>
+    <button class="bottom-bar-item" id="cart-action-button">
+      <span id="cart-icon-display">0 🛒</span>
+    </button>
+    <button class="bottom-bar-item">
+      <!-- Optional: <i class="icon-profile"></i> -->
+    </button>
+  </div>
+
   <script src="menu-grid.js"></script>
+  <script src="cartOverlay.js"></script>
+  <script src="orderConfirmationOverlay.js"></script>
+  <script src="cart.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
