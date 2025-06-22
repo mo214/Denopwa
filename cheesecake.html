@@ -51,6 +51,14 @@
   </style>
 </head>
 <body>
+  <!-- Sidebar button and sidebar -->
+  <button id="openSidebarBtn" onclick="openSidebar()" style="position:fixed;top:18px;left:18px;z-index:1000;">☰ Menu</button>
+  <div id="sidebar" style="display:none;">
+    <a href="javascript:void(0)" onclick="closeSidebar()" style="font-size:2em;">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+  </div>
+
   <div class="cheesecake-container">
     <h2>Cheesecake</h2>
     <img src="images/Cheesecake.jpg" alt="Cheesecake" class="cheesecake-img" />
@@ -109,6 +117,12 @@
   <script src="orderConfirmationOverlay.js"></script>
   <script src="cart.js"></script>
   <script>
+    function openSidebar() {
+      document.getElementById('sidebar').style.display = 'block';
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').style.display = 'none';
+    }
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
