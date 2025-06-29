@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lemon Cake</title>
+  <link rel="stylesheet" href="menu-grid.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="bottom-bar.css">
+  <style>
+    .product-container {
+      max-width: 400px;
+      margin: 40px auto 120px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 24px 18px 32px 18px;
+      text-align: center;
+    }
+    .product-img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+    .product-options label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.05em;
+      cursor: pointer;
+      text-align: left;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .add-to-cart-btn {
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 28px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 18px;
+      transition: background 0.2s;
+    }
+    .add-to-cart-btn:hover {
+      background: #1256a3;
+    }
+    .back-link {
+      margin-right: 16px;
+      color: #1976d2;
+      text-decoration: underline;
+      font-size: 1em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <button id="openSidebarBtn" onclick="openSidebar()">☰ Menu</button>
+  <div id="sidebar">
+    <a href="javascript:void(0)" onclick="closeSidebar()" style="font-size:2em;">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+  </div>
+
+  <div class="product-container">
+    <h2>Lemon Cake</h2>
+    <img src="images/Lemon Cake.jpg" alt="Lemon Cake" class="product-img" />
+    <div class="item-price" style="font-size:1.2em; margin-bottom: 18px;">DKK 14,-</div>
+    <div class="product-description" style="margin-bottom:18px; color:#444;">
+      Moist lemon cake with a tangy glaze. A perfect balance of sweet and tart, baked fresh daily.
+    </div>
+    <form class="product-options">
+      <strong>Add-ons:</strong>
+      <label>
+        <input type="checkbox" name="addon" value="Extra Glaze">
+        Extra Lemon Glaze (+DKK 2,-)
+      </label>
+      <label>
+        <input type="checkbox" name="addon" value="Whipped Cream">
+        Whipped Cream (+DKK 3,-)
+      </label>
+    </form>
+    <a href="menu.html" class="back-link">&#8592; Back to Menu</a>
+    <button class="add-to-cart-btn">Add to Cart 🛒</button>
+  </div>
+
+  <div id="bottom-bar">
+    <button class="bottom-bar-item"></button>
+    <button id="order-button" style="padding: 10px 20px; background-color: #fafafa; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Bestill</button>
+    <span id="cart-details-display">DKK (0.00,-)</span>
+    <button class="bottom-bar-item" id="cart-action-button">
+      <span id="cart-icon-display">0 🛒</span>
+    </button>
+    <button class="bottom-bar-item"></button>
+  </div>
+  <script src="sidebar.js"></script>
+  <script src="menu-grid.js"></script>
+  <script src="cartOverlay.js"></script>
+  <script src="orderConfirmationOverlay.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    function openSidebar() {
+      document.getElementById('sidebar').style.display = 'block';
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').style.display = 'none';
+    }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
