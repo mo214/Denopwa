@@ -4,189 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Menu</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-  <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="menu-grid.css">
-  <link rel="stylesheet" href="orderConfirmationOverlay.css">
+  <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="bottom-bar.css">
+  <style>
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 40px auto 120px auto;
+      padding: 0 16px;
+    }
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 18px 10px 22px 10px;
+      text-align: center;
+      text-decoration: none;
+      color: #222;
+      transition: box-shadow 0.2s;
+    }
+    .menu-item:hover {
+      box-shadow: 0 4px 18px rgba(25, 118, 210, 0.15);
+      color: #1976d2;
+    }
+    .menu-item img {
+      width: 100%;
+      max-width: 140px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    }
+    .menu-item span {
+      font-size: 1.1em;
+      font-weight: 500;
+      margin-top: 6px;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      font-size: 2em;
+      color: #1976d2;
+    }
+  </style>
 </head>
 <body>
-   
+  <button id="openSidebarBtn" onclick="openSidebar()">☰ Menu</button>
+  <div id="sidebar">
+    <a href="javascript:void(0)" onclick="closeSidebar()" style="font-size:2em;">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+  </div>
+
+  <h1>Our Menu</h1>
+  <div class="menu-grid">
+    <a href="cheesecake.html" class="menu-item">
+      <img src="images/cheesecake.jpg" alt="Cheesecake">
+      <span>Cheesecake</span>
+    </a>
+    <a href="lemon-cake.html" class="menu-item">
+      <img src="images/Lemon Cake.jpg" alt="Lemon Cake">
+      <span>Lemon Cake</span>
+    </a>
+    <a href="moist-chocolate-cake.html" class="menu-item">
+      <img src="images/Moist-Chocolate-Cake-.jpg" alt="Moist Chocolate Cake">
+      <span>Moist Chocolate Cake</span>
+    </a>
+    <a href="tebirkes.html" class="menu-item">
+      <img src="images/tebirkes-danish-bread-with-poppy-seeds-white-background_525574-6200.jpg" alt="Tebirkes">
+      <span>Tebirkes</span>
+    </a>
+    <a href="sandwich.html" class="menu-item">
+      <img src="images/sandwich.jpg" alt="Sandwich">
+      <span>Sandwich</span>
+    </a>
+    <a href="cappuccino.html" class="menu-item">
+      <img src="images/8624835-how-to-make-a-cappuccino-beauty-4x3-0301-13d55eaad60b42058f24369c292d4ccb.jpg" alt="Cappuccino">
+      <span>Cappuccino</span>
+    </a>
+    <a href="small-coffee.html" class="menu-item">
+      <img src="images/A_small_cup_of_coffee.JPG" alt="Small Coffee">
+      <span>Small Coffee</span>
+    </a>
+    <a href="caffe-latte.html" class="menu-item">
+      <img src="images/Caffe_Latte_at_Pulse_Cafe.jpg" alt="Caffe Latte">
+      <span>Caffe Latte</span>
+    </a>
+    <a href="hot-chocolate.html" class="menu-item">
+      <img src="images/Hot-Chocolate-3.jpg" alt="Hot Chocolate">
+      <span>Hot Chocolate</span>
+    </a>
+    <a href="cola.html" class="menu-item">
+      <img src="images/cola.jpg" alt="Cola">
+      <span>Cola</span>
+    </a>
+    <a href="ice-tea.html" class="menu-item">
+      <img src="images/Ice tea.jpg" alt="Ice Tea">
+      <span>Ice Tea</span>
+    </a>
+    <a href="strawberry-smoothie.html" class="menu-item">
+      <img src="images/Strawberry-Smoothie-cqzb-videoSixteenByNineJumbo1600.jpg" alt="Strawberry Smoothie">
+      <span>Strawberry Smoothie</span>
+    </a>
+    <a href="chocolate-croissant.html" class="menu-item">
+      <img src="images/chocolate croissant.jpg" alt="Chocolate Croissant">
+      <span>Chocolate Croissant</span>
+    </a>
+    <a href="chocolate-muffin.html" class="menu-item">
+      <img src="images/chokolade muffin.jpg" alt="Chocolate Muffin">
+      <span>Chocolate Muffin</span>
+    </a>
+    <a href="hindbaersnitter.html" class="menu-item">
+      <img src="images/hindbaersnitter.jpg" alt="Hindbærsnitter">
+      <span>Hindbærsnitter</span>
+    </a>
+    <a href="kanelsnegl.html" class="menu-item">
+      <img src="images/Kanelsnegl.jpg" alt="Kanelsnegl">
+      <span>Kanelsnegl</span>
+    </a>
+    <!-- Add more products as needed -->
+  </div>
+
+  <div id="bottom-bar">
+    <button class="bottom-bar-item"></button>
+    <button id="order-button" style="padding: 10px 20px; background-color: #fafafa; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Bestill</button>
+    <span id="cart-details-display">DKK (0.00,-)</span>
+    <button class="bottom-bar-item" id="cart-action-button">
+      <span id="cart-icon-display">0 🛒</span>
+    </button>
+    <button class="bottom-bar-item"></button>
+  </div>
+  <script src="sidebar.js"></script>
+  <script src="menu-grid.js"></script>
+  <script src="cartOverlay.js"></script>
+  <script src="orderConfirmationOverlay.js"></script>
+  <script src="cart.js"></script>
   <script>
+    function openSidebar() {
+      document.getElementById('sidebar').style.display = 'block';
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').style.display = 'none';
+    }
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
   </script>
-  <div style="text-align: center; margin-bottom: 20px;">
-    <img src="images/pngtree-coffee-logo-png-image_5898135.png" alt="Restaurant Logo" style="max-width: 95px; height: auto;">
-  </div>
-  <h2>Menu - <span id="table-number-display" style="font-weight: normal; font-size: 0.8em;">Loading table...</span></h2>
-
-<h3>Hot Drinks</h3>
-<div class="menu-grid">
-  <div class="menu-item" data-price="3.50">
-    <div class="item-price-corner">DKK 35,-</div>
-    <img src="images/8624835-how-to-make-a-cappuccino-beauty-4x3-0301-13d55eaad60b42058f24369c292d4ccb.jpg" alt="Cappuccino">
-    <div class="item-name">Cappuccino</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="25.00">
-    <div class="item-price-corner">DKK 25,-</div>
-    <img src="images/A_small_cup_of_coffee.JPG" alt="Small Coffee">
-    <div class="item-name">Small Coffee</div>
-    <div class="item-price-corner">DKK 25,-</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="3.00">
-    <div class="item-price-corner">DKK 30,-</div>
-    <img src="images/Caffe_Latte_at_Pulse_Cafe.jpg" alt="Caffe Latte">
-    <div class="item-name">Caffe Latte</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="3.00">
-    <div class="item-price-corner">DKK 30,-</div>
-    <img src="images/Hot-Chocolate-3.jpg" alt="Hot Chocolate">
-    <div class="item-name">Hot Chocolate</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-</div>
-
-<h3>Cold Drinks</h3>
-<div class="menu-grid">
-  <div class="menu-item" data-price="2.50">
-    <div class="item-price-corner">DKK 25,-</div>
-    <img src="images/cola.jpg" alt="Cola">
-    <div class="item-name">Cola</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="2.50">
-    <div class="item-price-corner">DKK 25,-</div>
-    <img src="images/Ice tea.jpg" alt="Ice Tea">
-    <div class="item-name">Ice Tea</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="3.00">
-    <div class="item-price-corner">DKK 30,-</div>
-    <img src="images/Strawberry-Smoothie-cqzb-videoSixteenByNineJumbo1600.jpg" alt="Strawberry Smoothie">
-    <div class="item-name">Strawberry Smoothie</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-</div>
-
-<h3>Cakes &amp; Pastries</h3>
-<div class="menu-grid">
-  <div class="menu-item" data-price="19.00">
-    <div class="item-price-corner">DKK 19,-</div>
-    <a href="cheesecake.html" class="menu-item-link">
-      <img src="images/Cheesecake.jpg" alt="Cheesecake" loading="lazy">
-    </a>
-    <a href="cheesecake.html" class="item-name">Cheesecake</a>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="15.00">
-    <div class="item-price-corner">DKK 15,-</div>
-    <img src="images/chocolate croissant.jpg" alt="Chocolate Croissant">
-    <div class="item-name">Chocolate Croissant</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="15.00">
-    <div class="item-price-corner">DKK 15,-</div>
-    <img src="images/chokolade muffin.jpg" alt="Chocolate Muffin">
-    <div class="item-name">Chocolate Muffin</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="12.00">
-    <div class="item-price-corner">DKK 12,-</div>
-    <img src="images/croissant.jpg" alt="Croissant">
-    <div class="item-name">Croissant</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="12.00">
-    <div class="item-price-corner">DKK 12,-</div>
-    <img src="images/hindbaersnitter.jpg" alt="Hindbærsnitter">
-    <div class="item-name">Hindbærsnitter</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="14.00">
-    <div class="item-price-corner">DKK 14,-</div>
-    <img src="images/Kanelsnegl.jpg" alt="Kanelsnegl">
-    <div class="item-name">Kanelsnegl</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="14.00">
-    <div class="item-price-corner">DKK 14,-</div>
-    <img src="images/Lemon Cake.jpg" alt="Lemon Cake">
-    <div class="item-name">Lemon Cake</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="16.00">
-    <div class="item-price-corner">DKK 16,-</div>
-    <img src="images/Moist-Chocolate-Cake-.jpg" alt="Moist Chocolate Cake">
-    <div class="item-name">Moist Chocolate Cake</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="10.00">
-    <div class="item-price-corner">DKK 10,-</div>
-    <img src="images/tebirkes-danish-bread-with-poppy-seeds-white-background_525574-6200.jpg" alt="Tebirkes">
-    <div class="item-name">Tebirkes</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-</div>
-
-<h3>Sandwiches &amp; Savory</h3>
-<div class="menu-grid">
-  <div class="menu-item" data-price="35.00">
-    <div class="item-price-corner">DKK 35,-</div>
-    <img src="images/Panini.jpg" alt="Panini">
-    <div class="item-name">Panini</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="30.00">
-    <div class="item-price-corner">DKK 30,-</div>
-    <img src="images/sandwitch.webp" alt="Sandwich">
-    <div class="item-name">Sandwich</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-  <div class="menu-item" data-price="32.00">
-    <div class="item-price-corner">DKK 32,-</div>
-    <img src="images/smørbrød.png" alt="Smørbrød">
-    <div class="item-name">Smørbrød</div>
-    <span class="add-to-cart-icon">🛒</span>
-  </div>
-</div>
-  <div id="sidebar">
-    <a href="javascript:void(0)" onclick="closeSidebar()">&times;</a>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-  </div>
-  <button id="openSidebarBtn" onclick="openSidebar()">☰ Menu</button>
-  <!-- (Your other page content) -->
-
-<div id="bottom-bar">
-  <button class="bottom-bar-item">
-    <!-- Optional: <i class="icon-home"></i> -->
-    
-  
-   <button id="order-button" style="padding: 10px 20px; background-color: #fafafa; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Bestill</button>
-  <span id="cart-details-display">DKK (0.00,-)</span> <!-- Price Span -->
-  <button class="bottom-bar-item" id="cart-action-button">
-    <span id="cart-icon-display">0 🛒</span> <!-- Count and Icon Span -->
-  </button>
-  <button class="bottom-bar-item">
-    <!-- Optional: <i class="icon-profile"></i> -->
-   
-  </button>
-</div>
-
-<!-- (Your scripts) -->
-
-
-  <script src="sidebar.js"></script>
-  <script src="menu-grid.js"></script>
-  <script src="cartOverlay.js"></script>
-   <script src="orderConfirmationOverlay.js"></script>
-  <script src="cart.js"></script>
 </body>
 </html>
 
